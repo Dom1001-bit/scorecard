@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon Product Launch Scorecard (Full Version)</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #343a40;
+      font-size: 24px;
+    }
+    .table-container {
+      overflow-x: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border: 1px solid #dee2e6;
+      text-align: left;
+      font-size: 14px;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 14px;
+    }
+    tfoot td {
+      font-weight: bold;
+      background-color: #e9ecef;
+      font-size: 18px;
+      text-align: center;
+      color: #28a745;
+    }
+    .button-group {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .button-group button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .button-group button:hover {
+      background-color: #0056b3;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+      th, td {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+      input[type="number"] {
+        width: 50px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Amazon Product Launch Scorecard</h1>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Section</th>
+        <th>Question</th>
+        <th>Points</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2"><strong>Competition</strong></td>
+        <td>Top 10 competitors have avg &lt;600 reviews?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td>No brand owns &gt;50% of market?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>Price & Size</strong></td>
+        <td>Can sell for $35+?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td>Under 4 lbs? (If 4–6 lbs, $55–75 price?)</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td rowspan="3"><strong>Keyword Demand</strong></td>
+        <td>7+ keywords over 3,000 searches/month?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td>Total keyword volume &gt;30,000/mo?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td>Keywords show buyer intent?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>Differentiation</strong></td>
+        <td>2–3 negative competitor issues you can fix?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td>Possible to bundle or add extra value easily?</td>
+        <td>+3</td>
+        <td><input type="number" min="0" max="3" class="score"></td>
+      </tr>
+      <tr>
+        <td><strong>Ad & Costs</strong></td>
+        <td>Average CPC &lt; $2.00?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td rowspan="2"><strong>Visual & Brand</strong></td>
+        <td>Product can be shown as premium in photos?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+      <tr>
+        <td>Strong emotional positioning possible?</td>
+        <td>+5</td>
+        <td><input type="number" min="0" max="5" class="score"></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"><strong>Total</strong></td>
+        <td><strong>Max 58</strong></td>
+        <td id="totalScore">0</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<div class="button-group">
+  <button onclick="saveScore()">Save Score</button>
+  <button onclick="resetForm()">Reset Form</button>
+  <button onclick="exportToCSV()">Export to CSV</button>
+</div>
+
+<script>
+  const inputs = document.querySelectorAll('.score');
+  const totalDisplay = document.getElementById('totalScore');
+
+  function updateTotal() {
+    let total = 0;
+    inputs.forEach(input => {
+      total += Number(input.value) || 0;
+    });
+    totalDisplay.textContent = total;
+  }
+
+  function saveScore() {
+    const scores = Array.from(inputs).map(input => input.value || "0");
+    localStorage.setItem('savedScores', JSON.stringify(scores));
+    alert('Score saved successfully!');
+  }
+
+  function resetForm() {
+    if (confirm("Are you sure you want to reset all fields?")) {
+      inputs.forEach(input => input.value = '');
+      updateTotal();
+    }
+  }
+
+  function exportToCSV() {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "Section,Question,Points,Your Score\n";
+
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const cells = row.querySelectorAll('td');
+      if (cells.length === 4) {
+        const section = cells[0].rowSpan ? cells[0].innerText : "";
+        const question = cells[1].innerText;
+        const points = cells[2].innerText;
+        const scoreInput = cells[3].querySelector('input');
+        const score = scoreInput ? (scoreInput.value || 0) : 0;
+        csvContent += `"${section}","${question}","${points}","${score}"\n`;
+      }
+    });
+
+    const today = new Date();
+    const dateString = today.toISOString().split('T')[0]; // e.g., 2025-04-28
+    const fileName = `amazon_product_scorecard_${dateString}.csv`;
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  window.onload = function() {
+    const saved = JSON.parse(localStorage.getItem('savedScores'));
+    if (saved) {
+      inputs.forEach((input, index) => {
+        input.value = saved[index] || '';
+      });
+      updateTotal();
+    }
+  };
+
+  inputs.forEach(input => {
+    input.addEventListener('input', updateTotal);
+  });
+</script>
+
+</body>
+</html>
